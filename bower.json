@@ -1,0 +1,17 @@
+{
+  "name": "heroku2",
+  "version": "0.0.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+  	"backbone" : "latest",
+  	"marionette" : "latest",
+    "underscore" : "latest",
+    "bootstrap" : "latest",
+    "requirejs" : "latest",
+    "json2" : "latest"
+  }
+}

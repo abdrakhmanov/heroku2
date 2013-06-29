@@ -1,5 +1,14 @@
-extends layout
+doctype 5
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/js/vendor/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/design/css/master.min.css')
+  body
+    noscript 
+        .container
+            pre
+                Без JavaScript ничего работать не будет.
+    #wrapper
+    script(src='/js/require.min.js', data-main='js/main.js')
 
-block content
-  h1= title
-  p Welcome to #{title}
