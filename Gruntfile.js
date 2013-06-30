@@ -10,7 +10,8 @@ module.exports = function(grunt) {
           {expand: true, cwd: 'components/json2/', src: ['json2.js'], dest: 'public/js/vendor/'},/*, filter: 'isFile'*/
           {expand: true, cwd: 'components/backbone/', src: ['backbone.js'], dest: 'public/js/vendor/'},/*, filter: 'isFile'*/
           {expand: true, cwd: 'components/marionette/lib/', src: ['backbone.marionette.js'], dest: 'public/js/vendor/'},/*, filter: 'isFile'*/
-          {expand: true, cwd: 'components/requirejs/', src: ['require.js'], dest: 'public/js/vendor/'}/*, filter: 'isFile'*/
+          {expand: true, cwd: 'components/requirejs/', src: ['require.js'], dest: 'public/js/vendor/'},/*, filter: 'isFile'*/
+          {expand: true, cwd: 'components/requirejs-tpl/', src: ['tpl.js'], dest: 'public/js/vendor/'}/*, filter: 'isFile'*/
           //{src: ['path/**'], dest: 'dest/'}, // includes files in path and its subdirs
           //{expand: true, cwd: 'path/', src: ['**'], dest: 'dest/'}, // makes all src relative to cwd
           //{expand: true, flatten: true, src: ['path/**'], dest: 'dest/', filter: 'isFile'} // flattens results to a single level
@@ -24,6 +25,7 @@ module.exports = function(grunt) {
         },
         files: {
           "public/js/vendor/bootstrap/css/bootstrap.min.css": "components/bootstrap/less/bootstrap.less",
+          "public/js/vendor/bootstrap/css/bootstrap-responsive.min.css": "components/bootstrap/less/responsive.less",
           "public/design/css/master.min.css": "assets/less/master.less"
         }
       },
@@ -34,7 +36,7 @@ module.exports = function(grunt) {
         },
         files: {
           "public/js/vendor/bootstrap/css/bootstrap.min.css": "components/bootstrap/less/bootstrap.less",
-          "public/design/css/master.min.css": "assets/less/master.less"
+          "public/js/vendor/bootstrap/css/bootstrap-responsive.min.css": "components/bootstrap/less/responsive.less"
         }
       }
     },

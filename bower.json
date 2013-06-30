@@ -12,6 +12,7 @@
     "underscore" : "latest",
     "bootstrap" : "latest",
     "requirejs" : "latest",
-    "json2" : "latest"
+    "json2" : "latest",
+    "requirejs-tpl" : "latest"
   }
 }

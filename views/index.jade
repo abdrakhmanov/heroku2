@@ -2,13 +2,15 @@ doctype 5
 html
   head
     title= title
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
     link(rel='stylesheet', href='/js/vendor/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/js/vendor/bootstrap/css/bootstrap-responsive.min.css')
     link(rel='stylesheet', href='/design/css/master.min.css')
   body
     noscript 
         .container
             pre
                 Без JavaScript ничего работать не будет.
-    #wrapper
+    section#wrapper.container-fluid
     script(src='/js/require.min.js', data-main='js/main.js')
 
