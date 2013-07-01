@@ -4,13 +4,13 @@ module.exports = function(grunt) {
     copy: {
       main: {
         files: [
-          {expand: true, cwd: 'components/bootstrap/', src: ['img/*'], dest: 'public/js/vendor/bootstrap/', filter: 'isFile'}, // includes files in path
+          {expand: true, cwd: 'components/bootstrap/', src: ['img/*'], dest: 'public/design/', filter: 'isFile'}, // includes files in path
           {expand: true, cwd: 'components/jquery/', src: ['jquery.js'], dest: 'public/js/vendor/'},/*, filter: 'isFile'*/
           {expand: true, cwd: 'components/underscore/', src: ['underscore.js'], dest: 'public/js/vendor/'},/*, filter: 'isFile'*/
           {expand: true, cwd: 'components/json2/', src: ['json2.js'], dest: 'public/js/vendor/'},/*, filter: 'isFile'*/
           {expand: true, cwd: 'components/backbone/', src: ['backbone.js'], dest: 'public/js/vendor/'},/*, filter: 'isFile'*/
           {expand: true, cwd: 'components/marionette/lib/', src: ['backbone.marionette.js'], dest: 'public/js/vendor/'},/*, filter: 'isFile'*/
-          {expand: true, cwd: 'components/requirejs/', src: ['require.js'], dest: 'public/js/vendor/'},/*, filter: 'isFile'*/
+          {expand: true, cwd: 'components/requirejs/', src: ['require.js'], dest: 'tmp/'},/*, filter: 'isFile'*/
           {expand: true, cwd: 'components/requirejs-tpl/', src: ['tpl.js'], dest: 'public/js/vendor/'}/*, filter: 'isFile'*/
           //{src: ['path/**'], dest: 'dest/'}, // includes files in path and its subdirs
           //{expand: true, cwd: 'path/', src: ['**'], dest: 'dest/'}, // makes all src relative to cwd
@@ -24,19 +24,21 @@ module.exports = function(grunt) {
           paths: ["components"]
         },
         files: {
-          "public/js/vendor/bootstrap/css/bootstrap.min.css": "components/bootstrap/less/bootstrap.less",
-          "public/js/vendor/bootstrap/css/bootstrap-responsive.min.css": "components/bootstrap/less/responsive.less",
-          "public/design/css/master.min.css": "assets/less/master.less"
+          "tmp/1.bootstrap.css": "components/bootstrap/less/bootstrap.less",
+          "tmp/2.bootstrap-responsive.css": "components/bootstrap/less/responsive.less",
+          "tmp/3.master.css": "assets/less/master.less"
         }
       },
       production: {
         options: {
           paths: ["components"],
-          yuicompress: true
+          yuicompress: true,
+          ieCompat: false
         },
         files: {
-          "public/js/vendor/bootstrap/css/bootstrap.min.css": "components/bootstrap/less/bootstrap.less",
-          "public/js/vendor/bootstrap/css/bootstrap-responsive.min.css": "components/bootstrap/less/responsive.less"
+          "tmp/1.bootstrap.css": "components/bootstrap/less/bootstrap.less",
+          "tmp/2.bootstrap-responsive.css": "components/bootstrap/less/responsive.less",
+          "tmp/3.master.css": "assets/less/master.less"
         }
       }
     },
@@ -45,23 +47,23 @@ module.exports = function(grunt) {
         // define a string to put between each file in the concatenated output
         separator: ';'
       },
+      bootstrap: {
+        // the files to concatenate
+        src: ['components/bootstrap/js/*.js'],
+        // the location of the resulting JS file
+        dest: 'tmp/bootstrap.js'
+      },
+      css: {
+        options: {
+          separator: ''
+        },
+        src: ['tmp/*.css'],
+        dest: 'public/design/css/master.css'
+      },
       dist: {
-        // bootstrap{
-        //   // the files to concatenate
-        //   src: ['src/js/bootstrap/*.js'],
-        //   // the location of the resulting JS file
-        //   dest: 'build/js/bootstrap.js'
-        // },
-        // jquery{
-        //   // the files to concatenate
-        //   src: ['src/js/jquery.js'],
-        //   // the location of the resulting JS file
-        //   dest: 'build/js/jquery.js'
-        // }
-        files: {
-          'public/js/vendor/bootstrap/bootstrap.js': ['components/bootstrap/js/*.js']
-        }
-        
+        //files: {
+        //  'public/js/vendor/bootstrap/bootstrap.js': ['components/bootstrap/js/*.js']
+        //}  
       }
     },
     uglify: {
@@ -71,8 +73,8 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          'public/js/vendor/bootstrap/bootstrap.min.js': ['public/js/vendor/bootstrap/bootstrap.js'],
-          'public/js/require.min.js': ['public/js/vendor/require.js']
+          'public/js/vendor/bootstrap.js': ['tmp/bootstrap.js'],
+          'public/js/vendor/require.js': ['tmp/require.js']
         }
       }
     },
@@ -93,6 +95,10 @@ module.exports = function(grunt) {
     watch: {
       files: ['<%= jshint.files %>'],
       tasks: ['jshint', 'concat', 'uglify']
+    },
+    clean: {
+      before: ["tmp", "public/js/vendor", "public/design/css"],
+      after: ["tmp"]
     }
   });
  
@@ -103,12 +109,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-clean');
  
   // Register the default tasks
   grunt.registerTask('default', ['jshint']);
 
   //
-  grunt.registerTask('dev', ['jshint', 'copy', 'less', 'concat', 'uglify']);
+  grunt.registerTask('dev', ['jshint', 'clean:before', 'copy', 'less:development', 'concat', 'uglify', 'clean:after']);
 
   // Register building task
   grunt.registerTask('build', ['jshint', 'copy', 'less', 'concat', 'uglify']);
