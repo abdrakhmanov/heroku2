@@ -60,11 +60,21 @@ module.exports = function(grunt) {
         src: ['tmp/*.css'],
         dest: 'public/design/css/master.css'
       },
-      dist: {
-        //files: {
-        //  'public/js/vendor/bootstrap/bootstrap.js': ['components/bootstrap/js/*.js']
-        //}  
-      }
+      rjs: {
+        src: [
+          'public/js/vendor/jquery.js',
+          'public/js/vendor/underscore.js',
+          'public/js/vendor/json2.js',
+          'public/js/vendor/bootstrap.js',
+          'public/js/vendor/backbone.js',
+          'public/js/vendor/backbone.marionette.js',
+          'public/js/vendor/tpl.js',
+          'public/js/project/**.js',
+          'public/js/main.js'
+          ],
+        dest: 'tmp/main.js'
+      },
+
     },
     uglify: {
       options: {
@@ -75,6 +85,11 @@ module.exports = function(grunt) {
         files: {
           'public/js/vendor/bootstrap.js': ['tmp/bootstrap.js'],
           'public/js/vendor/require.js': ['tmp/require.js']
+        }
+      },
+      rjs: {
+        files: {
+          'tmp/main.min.js' : 'tmp/main.js'
         }
       }
     },
@@ -89,16 +104,20 @@ module.exports = function(grunt) {
           console: true,
           module: true
         }
-      }
-      
-    },
-    watch: {
-      files: ['<%= jshint.files %>'],
-      tasks: ['jshint', 'concat', 'uglify']
+      } 
     },
     clean: {
       before: ["tmp", "public/js/vendor", "public/design/css"],
       after: ["tmp"]
+    },
+    requirejs: {
+      compile: {
+        options: {
+          baseUrl: "path/to/base",
+          mainConfigFile: "path/to/config.js",
+          out: "path/to/optimized.js"
+        }
+      }
     }
   });
  
@@ -118,6 +137,8 @@ module.exports = function(grunt) {
   grunt.registerTask('dev', ['jshint', 'clean:before', 'copy', 'less:development', 'concat', 'uglify', 'clean:after']);
 
   // Register building task
-  grunt.registerTask('build', ['jshint', 'copy', 'less', 'concat', 'uglify']);
+  grunt.registerTask('prod', ['jshint', 'clean:before', 'copy', 'less:production', 'concat', 'uglify', 'clean:after']);
+
+  grunt.registerTask('rjs', ['concat:rjs', 'uglify:rjs']);
  
 };
