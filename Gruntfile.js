@@ -59,22 +59,7 @@ module.exports = function(grunt) {
         },
         src: ['tmp/*.css'],
         dest: 'public/design/css/master.css'
-      },
-      rjs: {
-        src: [
-          'public/js/vendor/jquery.js',
-          'public/js/vendor/underscore.js',
-          'public/js/vendor/json2.js',
-          'public/js/vendor/bootstrap.js',
-          'public/js/vendor/backbone.js',
-          'public/js/vendor/backbone.marionette.js',
-          'public/js/vendor/tpl.js',
-          'public/js/project/**.js',
-          'public/js/main.js'
-          ],
-        dest: 'tmp/main.js'
-      },
-
+      }
     },
     uglify: {
       options: {
@@ -87,11 +72,6 @@ module.exports = function(grunt) {
           'public/js/vendor/require.js': ['tmp/require.js']
         }
       },
-      rjs: {
-        files: {
-          'tmp/main.min.js' : 'tmp/main.js'
-        }
-      }
     },
     jshint: {
       // define the files to lint
@@ -139,6 +119,4 @@ module.exports = function(grunt) {
   // Register building task
   grunt.registerTask('prod', ['jshint', 'clean:before', 'copy', 'less:production', 'concat', 'uglify', 'clean:after']);
 
-  grunt.registerTask('rjs', ['concat:rjs', 'uglify:rjs']);
- 
 };
