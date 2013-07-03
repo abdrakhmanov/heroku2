@@ -7,12 +7,15 @@
     "components"
   ],
   "dependencies": {
-  	"backbone" : "latest",
-  	"marionette" : "latest",
+    "jquery" : "latest",
+    "json2" : "latest",
     "underscore" : "latest",
+    "backbone" : "latest",
+    "backbone.wreqr" : "latest",
+    "backbone.babysitter" : "latest",
+    "backbone.marionette" : "latest",
     "bootstrap" : "latest",
     "requirejs" : "latest",
-    "json2" : "latest",
     "requirejs-tpl" : "latest"
   }
 }

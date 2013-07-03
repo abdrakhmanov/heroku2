@@ -2,19 +2,25 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     copy: {
-      main: {
+      common: {
         files: [
           {expand: true, cwd: 'components/bootstrap/', src: ['img/*'], dest: 'public/design/', filter: 'isFile'}, // includes files in path
-          {expand: true, cwd: 'components/jquery/', src: ['jquery.js'], dest: 'public/js/vendor/'},/*, filter: 'isFile'*/
-          {expand: true, cwd: 'components/underscore/', src: ['underscore.js'], dest: 'public/js/vendor/'},/*, filter: 'isFile'*/
-          {expand: true, cwd: 'components/json2/', src: ['json2.js'], dest: 'public/js/vendor/'},/*, filter: 'isFile'*/
-          {expand: true, cwd: 'components/backbone/', src: ['backbone.js'], dest: 'public/js/vendor/'},/*, filter: 'isFile'*/
-          {expand: true, cwd: 'components/marionette/lib/', src: ['backbone.marionette.js'], dest: 'public/js/vendor/'},/*, filter: 'isFile'*/
-          {expand: true, cwd: 'components/requirejs/', src: ['require.js'], dest: 'tmp/'},/*, filter: 'isFile'*/
-          {expand: true, cwd: 'components/requirejs-tpl/', src: ['tpl.js'], dest: 'public/js/vendor/'}/*, filter: 'isFile'*/
+          {expand: true, cwd: 'components/requirejs/', src: ['require.js'], dest: 'public/js/vendor/'},/*, filter: 'isFile'*/
+          {expand: true, cwd: 'components/requirejs-tpl/', src: ['tpl.js'], dest: 'public/js/vendor/'},
+
+          {expand: true, cwd: 'components/jquery/', src: ['jquery.js'], dest: 'assets/js/vendor/'},
+          {expand: true, cwd: 'components/underscore/', src: ['underscore.js'], dest: 'assets/js/vendor/'},
+          {expand: true, cwd: 'components/json2/', src: ['json2.js'], dest: 'assets/js/vendor/'},
+          {expand: true, cwd: 'components/backbone/', src: ['backbone.js'], dest: 'assets/js/vendor/'},
+          {expand: true, cwd: 'components/marionette/lib/', src: ['backbone.marionette.js'], dest: 'assets/js/vendor/'}
           //{src: ['path/**'], dest: 'dest/'}, // includes files in path and its subdirs
           //{expand: true, cwd: 'path/', src: ['**'], dest: 'dest/'}, // makes all src relative to cwd
           //{expand: true, flatten: true, src: ['path/**'], dest: 'dest/', filter: 'isFile'} // flattens results to a single level
+        ]
+      },
+      production: {
+        files: [
+          {expand: true, cwd: 'assets/js/', src: ['project/**'], dest: 'public/js/'}
         ]
       }
     },
@@ -51,7 +57,7 @@ module.exports = function(grunt) {
         // the files to concatenate
         src: ['components/bootstrap/js/*.js'],
         // the location of the resulting JS file
-        dest: 'tmp/bootstrap.js'
+        dest: 'assets/js/vendor/bootstrap.js'
       },
       css: {
         options: {
@@ -60,18 +66,6 @@ module.exports = function(grunt) {
         src: ['tmp/*.css'],
         dest: 'public/design/css/master.css'
       }
-    },
-    uglify: {
-      options: {
-        // the banner is inserted at the top of the output
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
-      },
-      dist: {
-        files: {
-          'public/js/vendor/bootstrap.js': ['tmp/bootstrap.js'],
-          'public/js/vendor/require.js': ['tmp/require.js']
-        }
-      },
     },
     jshint: {
       // define the files to lint
@@ -87,15 +81,32 @@ module.exports = function(grunt) {
       } 
     },
     clean: {
-      before: ["tmp", "public/js/vendor", "public/design/css"],
+      before: ["tmp", "public/js", "public/design/css", "assets/js/vendor"],
       after: ["tmp"]
     },
     requirejs: {
-      compile: {
+      production: {
         options: {
-          baseUrl: "path/to/base",
-          mainConfigFile: "path/to/config.js",
-          out: "path/to/optimized.js"
+          baseUrl: "assets/js/project",
+          mainConfigFile: 'assets/js/main.js',
+          optimize: "uglify2",
+          optimizeCss: "none",
+          preserveLicenseComments: false,
+          out: "public/js/main.js",
+          name: "../main",
+          keepBuildDir: false
+        }
+      },
+      development: {
+        options: {
+          appDir: "assets/js/",
+          baseUrl: "./",
+          mainConfigFile: 'assets/js/main.js',
+          dir: "public/js",
+          optimize: "none",
+          optimizeCss: "none",
+          preserveLicenseComments: true,
+          keepBuildDir: true
         }
       }
     }
@@ -109,14 +120,34 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-requirejs');
  
   // Register the default tasks
   grunt.registerTask('default', ['jshint']);
 
   //
-  grunt.registerTask('dev', ['jshint', 'clean:before', 'copy', 'less:development', 'concat', 'uglify', 'clean:after']);
+  grunt.registerTask('dev', [
+    'jshint',
+    'clean:before',
+    'copy:common',
+    'less:development',
+    'concat:bootstrap',
+    'concat:css',
+    'requirejs:development',
+    'clean:after'
+  ]);
 
   // Register building task
-  grunt.registerTask('prod', ['jshint', 'clean:before', 'copy', 'less:production', 'concat', 'uglify', 'clean:after']);
+  grunt.registerTask('prod', [
+    'jshint',
+    'clean:before',
+    'copy:common',
+    'less:production',
+    'concat:bootstrap',
+    'concat:css',
+    'requirejs:production',
+    'copy:production',
+    'clean:after'
+  ]);
 
 };
