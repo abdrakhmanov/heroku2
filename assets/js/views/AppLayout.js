@@ -1,9 +1,9 @@
 define("views/AppLayout",
 	[
-		'tpl!templates/AppLayout.tpl'
+		'text!templates/AppLayout.tpl'
 	], function(AppLayoutTpl) {
     var AppLayout = Marionette.Layout.extend({
-		template: AppLayoutTpl,
+		template: _.template(AppLayoutTpl),
 		tagName: "section",
 		className: "row-fluid",
 		regions: {
