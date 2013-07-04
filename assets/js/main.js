@@ -18,7 +18,7 @@ require.config({
     }
 });
 
-define("main", ["marionette", "bootstrap"], function() {
+define("main", ["marionette", "bootstrap", "socketio"], function() {
 
     var Application = new Marionette.Application();
     Application.addRegions({
@@ -28,7 +28,13 @@ define("main", ["marionette", "bootstrap"], function() {
        require(["views/AppLayout"], function(AppLayout){
            Application.layoutRegion.show(new AppLayout());
        });
-    })
+    });
+    Application.addInitializer(function() {
+        this.socket = io.connect('http://'+location.hostname+':8080');
+        this.socket.on('connected', function(data) {
+            console.log(data);
+        });
+    });
 
     return Application.start();
 
