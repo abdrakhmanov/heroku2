@@ -30,7 +30,7 @@ define("main", ["marionette", "bootstrap", "socketio"], function() {
        });
     });
     Application.addInitializer(function() {
-        this.socket = io.connect('http://'+location.hostname+':8080');
+        this.socket = io.connect('http://'+location.hostname+'');
         this.socket.on('connected', function(data) {
             console.log(data);
         });
