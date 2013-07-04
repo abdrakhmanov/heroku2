@@ -25,7 +25,10 @@ define("main", [
 	"socketio"
 	], function(require) { $(document).ready(function(){
 
-		$("body").html('<div id="wrapper" class="container-fluid"></div>');
+		$("body").append('<div id="wrapper" class="container-fluid"></div>');
+		$(".overlay").fadeOut('slow', function() {
+			this.remove();
+		});
 
 		var Application = new Marionette.Application();
 		
@@ -35,7 +38,6 @@ define("main", [
 		
 		Application.addInitializer(function(){
             require(["views/AppLayout"], function(AppLayout){
-               $(".overlay").fadeOut('slow', function() { this.remove(); });
                Application.layoutRegion.show(new AppLayout());
             });
 		});
