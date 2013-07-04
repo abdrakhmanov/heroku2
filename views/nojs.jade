@@ -1,9 +1,11 @@
 extends layout
 
+block header
+    script
+        location.href = "/";
+
 block content
     noscript 
         .container
             pre
                 Без JavaScript ничего работать не будет.
-    script
-        location.href = "/";
