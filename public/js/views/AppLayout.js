@@ -1,1 +1,1 @@
-define("views/AppLayout",["text!templates/AppLayout.tpl"],function(e){var o=Marionette.Layout.extend({template:_.template(e),tagName:"section",className:"row-fluid",regions:{menu:"#menu",content:"#content"}});return o});
+define("views/AppLayout",["text!templates/AppLayout.html"],function(e){var o=Marionette.Layout.extend({template:_.template(e),tagName:"section",className:"row-fluid",regions:{menu:"#menu",content:"#content"}});return o});
