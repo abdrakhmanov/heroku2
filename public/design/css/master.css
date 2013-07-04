@@ -1,5 +1,5 @@
-@import url(http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css);@import url(http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.min.css);@import url(http://fonts.googleapis.com/css?family=Allura);/*!
+@import url(http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css);@import url(http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.min.css);@import url(http://fonts.googleapis.com/css?family=Allura|Marck+Script|Philosopher|Jura|Bad+Script&subset=latin,cyrillic);/*!
  * Custom styles
  *
  * heroku2.
- */.first-p{margin:60px 0;text-align:center}.overlay{position:absolute;top:0;left:0;right:0;bottom:0;background-color:#FFF;background:#FFF;z-index:9999;color:white}.overlay .row-fluid .offset4{color:Blue;text-align:center;font-size:2em;padding:20px}.overlay .row-fluid .offset4:after{content:"Загрузка..."}
+ */*{font-family:'Philosopher',sans-serif}.first-p{margin:60px 0;text-align:center}.overlay{position:absolute;top:0;left:0;right:0;bottom:0;background-color:#FFF;background:#FFF;z-index:9999;color:white}.overlay .row-fluid .offset4{color:Blue;text-align:center;font-size:2em;padding:20px}.overlay .row-fluid .offset4:after{content:"Загрузка..."}

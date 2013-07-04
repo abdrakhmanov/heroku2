@@ -22,6 +22,7 @@
     "grunt-contrib-less": "latest",
     "grunt-contrib-copy": "latest",
     "grunt-contrib-clean": "latest",
-    "grunt-contrib-requirejs": "latest"
+    "grunt-contrib-requirejs": "latest",
+    "socket.io": "latest"
   }
 }

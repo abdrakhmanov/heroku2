@@ -6,7 +6,8 @@ require.config({
         backbone: "//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min",
         marionette: "//cdnjs.cloudflare.com/ajax/libs/backbone.marionette/1.0.3-bundled/backbone.marionette.min",
         text: "//cdnjs.cloudflare.com/ajax/libs/require-text/2.0.5/text",
-        bootstrap: "//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min"
+        bootstrap: "//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min",
+        socketio: "//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min"
     },
     shim: {
         jquery: {export:"jQuery"},
