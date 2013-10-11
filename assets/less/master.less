@@ -26,24 +26,22 @@ font-family: 'Bad Script', cursive;
 
 .overlay {
     position: absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    background-color: #FFF;
-    background: #FFF;
-    z-index:9999;
-    color:white;
-    background:url('../img/back.png') repeat;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+    background: #000;
+    background: url('../img/back.png') repeat;
+    z-index: 9999;
 
-    .row-fluid .span4 {
-
-        .loader-img-content {
-            padding: 20px;
+    .loader-content {
+        position: absolute;
+        left: 48%;
+        top: 48%;
+        .img {
             height: 60px;
             @import "loader.less";
         }
-
     }
-
 }

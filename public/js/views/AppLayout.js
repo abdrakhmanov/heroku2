@@ -1,1 +1,18 @@
-define("views/AppLayout",["text!templates/AppLayout.html"],function(e){var o=Marionette.Layout.extend({template:_.template(e),regions:{menu:"#menu",content:"#content"},onRender:function(){}});return o});
+define("views/AppLayout",
+	[
+		'text!templates/AppLayout.html'
+	], function(AppLayoutTpl) {
+    var AppLayout = Marionette.Layout.extend({
+		template: _.template(AppLayoutTpl),
+		//tagName: "section",
+		//className: "row-fluid",
+		regions: {
+			menu: "#menu",
+			content: "#content"
+		},
+		onRender: function() {
+		}
+    });
+   
+    return AppLayout; 
+});
