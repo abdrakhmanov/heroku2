@@ -1,5 +1,5 @@
 @LoaderBaseColor: #ADFF2F;/*#2187e7*/
-.circle {
+.circle1 {
     background-color: rgba(0,0,0,0);
     border:5px solid @LoaderBaseColor;
     opacity:.9;
@@ -9,11 +9,12 @@
     box-shadow: 0 0 35px @LoaderBaseColor;
     width:50px;
     height:50px;
-    margin:0 auto;
+    position: absolute;
+    top: 50%;
     -moz-animation:spinPulse 1s infinite ease-in-out;
     -webkit-animation:spinPulse 1s infinite linear;
 }
-.circle1 {
+.circle2 {
     background-color: rgba(0,0,0,0);
     border:5px solid @LoaderBaseColor;
     opacity:.9;
@@ -23,9 +24,9 @@
     box-shadow: 0 0 15px @LoaderBaseColor; 
     width:30px;
     height:30px;
-    margin:0 auto;
-    position:relative;
-    top:-50px;
+    position: absolute;
+    top: 51.5%;
+    margin: 0 0 0 10px;
     -moz-animation:spinoffPulse 1s infinite linear;
     -webkit-animation:spinoffPulse 1s infinite linear;
 }

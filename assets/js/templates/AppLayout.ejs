@@ -1,0 +1,133 @@
+<a name="homey" id="homey"></a>
+<header>
+	<div class="container">
+		<div class="row">
+			<div class="span12">
+				<!-- Logo or Name section -->
+				<div class="logo">
+					<p class="lmain">Руслан Абдрахманов</p>
+					<!--p class="lsub">
+						Мы находимся здесь, чтобы внести свой вклад в этот мир. А иначе зачем мы здесь?
+						<br />
+						<a class="" href="http://tululu.org/aforizmy/author/222/">
+							<small>Стив Джобс</small>
+						</a>
+					</p-->
+
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span12">
+				<div class="flexslider">
+					 <ul class="slides">
+						 <!-- Slide #1 -->
+						 <!-- Each slide should be enclosed inside <li> tag. -->
+						 <li>  
+							<img src="/design/img/photos/s3.jpg" alt="" />
+						 </li>
+						 <!-- Slide #2 -->
+						 <li>
+							<img src="/design/img/photos/s2.jpg" alt="" />
+						 </li>
+						 <!-- Slide #3 -->
+						 <li>
+							<img src="/design/img/photos/s1.jpg" alt="" />
+						 </li>
+						 <!-- Slide #4 -->
+						 <li>
+							<img src="/design/img/photos/s4.jpg" alt="" />
+						 </li>
+						 <!-- Slide #5 -->
+						 <li>
+							<img src="/design/img/photos/s5.jpg" alt="" />
+						 </li>
+						 <!-- Slide #6 -->
+						 <li>
+							<img src="/design/img/photos/s6.jpg" alt="" />
+						 </li>
+						 <!-- Slide #7 -->
+						 <li>
+							<img src="/design/img/photos/s7.jpg" alt="" />
+						 </li>						 
+					 </ul>
+			   </div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span10 offset1">
+				<!-- Important liks like vcard download, phone number and contact details -->
+				<div class="cta">
+					<!--a href="#"><i class="icon-white icon-download"></i> Downloady My vCard</a>
+					<a href="#"><i class="icon-white icon-phone"></i> 123-456-7890</a> 
+					<a href="#"><i class="icon-white icon-envelope"></i> Contact Me Now</a-->
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+		
+<!-- navigation -->
+<div id="navigation">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4" style="text-align: center;"><a href="/"><h2>Home</h2></a></div>
+			<div class="col-md-4" style="text-align: center;"><a href="#!/GeoTracker"><h2>GeoTracker</h2></a></div>
+			<div class="col-md-4" style="text-align: center;"><!--a href="javascript:{}"><h2>Messages</h2></a--></div>
+		</div>
+	</div>
+</div>
+
+<div id="content"></div>
+
+<!-- Footer -->
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="span4">
+				<!-- Copyright info -->
+				<p>Copyright &copy; 2013 - <a href="#">Руслан Абдрахманов</a></p>
+			</div>
+			<div class="span3 offset5">
+				<!-- Social media icons -->
+				<div class="social">
+					<!--a href="#" class="facebook"><i class="icon-white icon-facebook"></i></a>
+					<a href="#" class="linkedin"><i class="icon-white icon-linkedin"></i></a>
+					<a href="#" class="google-plus"><i class="icon-white icon-google-plus"></i></a>
+					<a href="#" class="twitter"><i class="icon-white icon-twitter"></i></a-->
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<script>
+	
+	// Flex slider 
+			$('.flexslider').flexslider({
+				animation: "fade",
+				controlNav: false,
+				directionNav: false,
+				pauseOnHover: false,
+				slideshowSpeed: 8000
+			});
+
+			// Box animation 
+			$('.content-d').hide();
+			$('.box-d a').click(function() {
+				var x =  $(this).attr("id");
+				var $item = $('.' + x);
+				if (!$item.is(":visible")) $('.content-d').hide('10','swing');
+				$($item).slideToggle(400,'jswing');
+				return false;
+			});
+
+			// Tooltip
+			$('.tip').tooltip();
+
+			//$("a[class^='prettyPhoto']").fancybox();
+    $("a.top-go").click(function(e){
+		e.preventDefault();
+		$("html:not(:animated),body:not(:animated)").animate({scrollTop: $("#homey").offset().top}, 'fast');
+    })
+</script>		

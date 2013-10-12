@@ -1,0 +1,22 @@
+<% if(!_.isUndefined(GeoAPIModel.position.coords)) { %>
+<div class="row">
+	<h3>GeoTracker</h3>
+	<div class="location-current">
+		<% print(GeoAPIModel.position.coords.longitude + ', ' + GeoAPIModel.position.coords.latitude); %>
+	</div>
+	<div class="location-list">
+		<ul>
+			<%
+			var n = GeoAPIModel.positionStack.length;
+			for(var i=0; i < n; i++) {
+				var date= new Date(GeoAPIModel.positionStack[i].timestamp);
+				var ts = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate() + ' - ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+				var longitude = Number((GeoAPIModel.positionStack[i].coords.longitude).toFixed(4));
+				var latitude = Number((GeoAPIModel.positionStack[i].coords.latitude).toFixed(4));
+				print('<li>' + ts + ' [' + longitude + ', ' + latitude + ']' + '</li>');
+			}
+			%>
+		</ul>
+	</div>
+</div>
+<% } %>

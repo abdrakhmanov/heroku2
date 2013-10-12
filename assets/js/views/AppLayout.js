@@ -1,6 +1,6 @@
 define("views/AppLayout",
 	[
-		'text!templates/AppLayout.html'
+		'text!templates/AppLayout.ejs'
 	], function(AppLayoutTpl) {
     var AppLayout = Marionette.Layout.extend({
 		template: _.template(AppLayoutTpl),

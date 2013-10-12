@@ -1,0 +1,1 @@
+define("routers/AppRouter",["require","marionette"],function(o){var e=Backbone.Router.extend({routes:{"!/GeoTracker":"showGeoTracker"},before:function(){console.log("router:before"),app.content.close()},showGeoTracker:function(){console.log("GeoTracker"),o(["views/GeoTracker"],function(o){app.content.show(new o)})}});return e});
